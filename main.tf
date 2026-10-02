@@ -13,7 +13,10 @@ provider "aws" {
 
 provider "random" {}
 
-data "aws_availability_zones" "available" {}
+data "aws_availability_zones" "available" {
+  state = "available"
+  # Force it to evaluate inside your declared regional scope
+}
 
 resource "random_pet" "random" {}
 
