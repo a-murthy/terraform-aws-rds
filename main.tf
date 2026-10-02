@@ -13,10 +13,10 @@ provider "aws" {
 
 provider "random" {}
 
-data "aws_availability_zones" "available" {
-  state = "available"
+#data "aws_availability_zones" "available" {
+#  state = "available"
   # Force it to evaluate inside your declared regional scope
-}
+#}
 
 resource "random_pet" "random" {}
 
@@ -26,7 +26,7 @@ module "vpc" {
 
   name                 = "${random_pet.random.id}-education"
   cidr                 = "10.0.0.0/16"
-  azs                  = data.aws_availability_zones.available.names
+  azs                  = ["us-west-2a", "us-west-2b", "us-west-2c"]
   public_subnets       = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
   enable_dns_hostnames = true
   enable_dns_support   = true
